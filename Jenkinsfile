@@ -10,7 +10,6 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Testing environment') {
             steps {
                 echo 'Testing environment...'
@@ -45,41 +44,15 @@ pipeline {
                 }
             }
         }
-        stage('CanaryDeploy') {
-            when {
-                branch 'master'
-            }
-            environment { 
-                CANARY_REPLICAS = 1
-            }
+        stage('Deployment') {
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'portfolio-deploy-canary.yaml',
-                    enableConfigSubstitution: true
-                )
-            }
-        }
-        stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
-            environment { 
-                CANARY_REPLICAS = 0
-            }
-            steps {
-                input 'Deploy to Production?'
-                milestone(1)
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'portfolio-deploy-canary.yaml',
-                    enableConfigSubstitution: true
-                )
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'portfolio-deploy.yaml',
-                    enableConfigSubstitution: true
-                )
+                sh "kubectl create deployment kubernetes-flaskapp --image=${env.DOCKER_IMAGE_NAME}"
+                sh "kubectl get deployments"
+                sh "kubectl get pods"
+                sh "kubectl describe pods"
+                sh "export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')"
+                echo "Name of the Pod: ${env.POD_NAME}"
+                sh "kubectl port-forward ${env.POD_NAME} 8080:80"
             }
         }
     }
