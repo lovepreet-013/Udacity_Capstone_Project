@@ -1,0 +1,68 @@
+
+#make_prediction.sh output
+
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+
+
+#run_kubernetes.sh output
+
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-flaskapp   1/1     1            1           61m
+NAME                                 READY   STATUS    RESTARTS   AGE
+kubernetes-flaskapp-57768ff9-2q4fk   1/1     Running   0          60m
+Name:         kubernetes-flaskapp-57768ff9-2q4fk
+Namespace:    default
+Priority:     0
+Node:         minikube/172.17.0.3
+Start Time:   Tue, 12 May 2020 09:55:06 +0530
+Labels:       app=kubernetes-flaskapp
+              pod-template-hash=57768ff9
+Annotations:  <none>
+Status:       Running
+IP:           172.18.0.4
+IPs:
+  IP:           172.18.0.4
+Controlled By:  ReplicaSet/kubernetes-flaskapp-57768ff9
+Containers:
+  flaskapp:
+    Container ID:   docker://22e1955c2c3cd9754dcc94e68c536c3ff206281eede74f6f5dfe49bb17d55593
+    Image:          lovepreet013/flaskapp
+    Image ID:       docker-pullable://lovepreet013/flaskapp@sha256:627bbbe8184a63e3b2de96cdff5b9f3f99b25ed2215c4483cfea4b73cce04af6
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Tue, 12 May 2020 10:52:04 +0530
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-jwcbr (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-jwcbr:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-jwcbr
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason   Age    From               Message
+  ----    ------   ----   ----               -------
+  Normal  Pulled   4m9s   kubelet, minikube  Successfully pulled image "lovepreet013/flaskapp"
+  Normal  Created  4m3s   kubelet, minikube  Created container flaskapp
+  Normal  Started  3m58s  kubelet, minikube  Started container flaskapp
+Name of the Pod: kubernetes-flaskapp-57768ff9-2q4fk
+Forwarding from 127.0.0.1:8080 -> 80
+Forwarding from [::1]:8080 -> 80
