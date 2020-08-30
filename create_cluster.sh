@@ -9,7 +9,7 @@ eksctl create cluster \
 --node-type t3.micro \
 --nodes 3 \
 --nodes-min 1 \
---nodes-max 4 
+--nodes-max 4 \
 --asg-access
 
 echo "Downloading Kubeconfig Files"
