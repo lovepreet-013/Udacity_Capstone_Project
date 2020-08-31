@@ -50,9 +50,9 @@ pipeline {
                 sh "kubectl get deployments"
                 sh "kubectl get pods"
                 sh "kubectl describe pods"
-                sh "export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')"
-                echo "Name of the Pod: ${env.POD_NAME}"
-                sh "kubectl port-forward ${env.POD_NAME} 8080:80"
+//                sh "export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')"
+//                echo "Name of the Pod: ${env.POD_NAME}"
+//                sh "kubectl port-forward ${env.POD_NAME} 8080:80"
             }
         }
     }
