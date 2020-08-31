@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "lovepreet013/flaskapp"
+        DOCKER_IMAGE_NAME = "lovepreet13/flaskapp"
     }
     stages {
         stage('Testing out git repo') {
